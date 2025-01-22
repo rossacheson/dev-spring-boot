@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Lazy(false)
 public class DemoController {
     private final Coach myCoach;
+    private final Coach anotherCoach;
 
     // Constructor Injection -- the typical recommended approach
     // Note: @Autowired annotation is optional when there is only one constructor
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    public DemoController(
+            @Qualifier("cricketCoach") Coach theCoach,
+            @Qualifier("cricketCoach") Coach anotherCoach
+    ) {
         System.out.println("In constructor: " + this.getClass().getSimpleName());
         this.myCoach = theCoach;
+        this.anotherCoach = anotherCoach;
     }
 
     // Setter Injection -- typically only used for optional dependencies
@@ -26,8 +31,13 @@ public class DemoController {
 //        myCoach = coach;
 //    }
 
-    @GetMapping("/dailyworkout")
+    @GetMapping("/daily-workout")
     public String getDailyWorkout() {
         return this.myCoach.getDailyWorkout();
+    }
+
+    @GetMapping("/check-coach-scope")
+    public String checkCoachScope() {
+        return "Comparing beans: myCoach == anotherCoach. Result: " + (this.myCoach == this.anotherCoach);
     }
 }
