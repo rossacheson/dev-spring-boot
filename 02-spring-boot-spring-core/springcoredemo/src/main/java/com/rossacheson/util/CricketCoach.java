@@ -1,4 +1,4 @@
-package com.rossacheson.springcoredemo.common;
+package com.rossacheson.util;
 
 import org.springframework.stereotype.Component;
 

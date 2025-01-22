@@ -1,4 +1,4 @@
-package com.rossacheson.springcoredemo.common;
+package com.rossacheson.util;
 
 public interface Coach {
     String getDailyWorkout();
