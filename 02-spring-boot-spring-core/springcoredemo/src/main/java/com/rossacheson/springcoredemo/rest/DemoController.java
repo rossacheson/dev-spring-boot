@@ -7,12 +7,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DemoController {
-    private final Coach myCoach;
+    private Coach myCoach;
 
+    // Constructor Injection -- the typical recommended approach
     // Note: @Autowired annotation is optional when there is only one constructor
+//    @Autowired
+//    public DemoController(Coach theCoach) {
+//        this.myCoach = theCoach;
+//    }
+
+    // Setter Injection -- typically only used for optional dependencies
     @Autowired
-    public DemoController(Coach theCoach) {
-        this.myCoach = theCoach;
+    public void setCoach(Coach coach) {
+        myCoach = coach;
     }
 
     @GetMapping("/dailyworkout")
