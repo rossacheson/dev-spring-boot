@@ -16,7 +16,7 @@ public class DemoController {
     // Note: @Autowired annotation is optional when there is only one constructor
     @Autowired
     public DemoController(
-            @Qualifier("aquaticCoach") Coach theCoach
+            @Qualifier("cricketCoach") Coach theCoach
     ) {
         System.out.println("In constructor: " + this.getClass().getSimpleName());
         this.myCoach = theCoach;

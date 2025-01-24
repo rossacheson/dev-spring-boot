@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SportConfig {
 
-    @Bean("aquaticCoach") // overrides default bean name is the method name
-    public Coach swimCoach() {
+    @Bean("aquaticCoach") // string here overrides default bean name
+    public Coach swimCoach() { // method name is the bean name by default
         return new SwimCoach();
     }
 
