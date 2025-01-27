@@ -48,4 +48,10 @@ public class StudentDAORepository implements StudentDAO {
 
         return query.getResultList();
     }
+
+    @Override
+    @Transactional
+    public void update(Student student) {
+        entityManager.merge(student); // update the Student
+    }
 }
