@@ -34,7 +34,7 @@ public class StudentDAORepository implements StudentDAO {
     @Override
     public List<Student> findAll() {
 //        TypedQuery<Student> query = entityManager.createQuery("SELECT s FROM Student s", Student.class);
-        TypedQuery<Student> query = entityManager.createQuery("FROM Student", Student.class);
+        TypedQuery<Student> query = entityManager.createQuery("FROM Student ORDER BY lastName ASC", Student.class);
 
         return query.getResultList();
     }
