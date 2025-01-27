@@ -5,4 +5,5 @@ import com.rossacheson.cruddemo.entity.Student;
 // Student Data Access Object
 public interface StudentDAO {
     void save(Student student);
+    Student findById(Integer id);
 }
