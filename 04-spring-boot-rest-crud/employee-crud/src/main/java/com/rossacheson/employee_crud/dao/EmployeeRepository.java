@@ -23,4 +23,23 @@ public class EmployeeRepository implements EmployeeDAO {
 
         return query.getResultList();
     }
+
+    @Override
+    public Employee findById(int id) {
+        Employee employee = entityManager.find(Employee.class, id);
+        return employee;
+    }
+
+    @Override
+    public Employee save(Employee employee) {
+        // merge creates if id == 0, otherwise updates
+        Employee savedEmployee = entityManager.merge(employee);
+        return savedEmployee;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        Employee employee = entityManager.find(Employee.class, id);
+        entityManager.remove(employee);
+    }
 }
