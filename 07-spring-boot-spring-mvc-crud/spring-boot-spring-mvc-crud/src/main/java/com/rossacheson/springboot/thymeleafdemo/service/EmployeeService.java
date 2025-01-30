@@ -1,6 +1,6 @@
-package com.rossacheson.springboot.cruddemo.service;
+package com.rossacheson.springboot.thymeleafdemo.service;
 
-import com.rossacheson.springboot.cruddemo.entity.Employee;
+import com.rossacheson.springboot.thymeleafdemo.entity.Employee;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.rossacheson.springboot.cruddemo.service;
+package com.rossacheson.springboot.thymeleafdemo.service;
 
-import com.rossacheson.springboot.cruddemo.dao.EmployeeRepository;
-import com.rossacheson.springboot.cruddemo.entity.Employee;
+import com.rossacheson.springboot.thymeleafdemo.dao.EmployeeRepository;
+import com.rossacheson.springboot.thymeleafdemo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

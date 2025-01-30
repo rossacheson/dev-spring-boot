@@ -1,6 +1,6 @@
-package com.rossacheson.springboot.cruddemo.dao;
+package com.rossacheson.springboot.thymeleafdemo.dao;
 
-import com.rossacheson.springboot.cruddemo.entity.Employee;
+import com.rossacheson.springboot.thymeleafdemo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {

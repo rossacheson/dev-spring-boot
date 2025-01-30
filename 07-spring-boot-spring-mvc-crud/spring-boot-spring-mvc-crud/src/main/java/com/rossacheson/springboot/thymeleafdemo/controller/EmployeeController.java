@@ -1,7 +1,7 @@
-package com.rossacheson.springboot.cruddemo.controller;
+package com.rossacheson.springboot.thymeleafdemo.controller;
 
-import com.rossacheson.springboot.cruddemo.entity.Employee;
-import com.rossacheson.springboot.cruddemo.service.EmployeeService;
+import com.rossacheson.springboot.thymeleafdemo.entity.Employee;
+import com.rossacheson.springboot.thymeleafdemo.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
