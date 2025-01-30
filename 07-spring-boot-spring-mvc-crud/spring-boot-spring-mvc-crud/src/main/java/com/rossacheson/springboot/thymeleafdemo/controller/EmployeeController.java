@@ -28,7 +28,15 @@ public class EmployeeController {
         model.addAttribute("employees", employees);
 
         // return template
-        return "list-employees";
+        return "/employees/list-employees";
+    }
+
+    @GetMapping("/employee-form")
+    public String showEmployeeForm(Model model) {
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+
+        return "/employees/employee-form";
     }
 
 }
