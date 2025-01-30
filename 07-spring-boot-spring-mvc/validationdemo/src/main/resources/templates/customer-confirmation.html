@@ -2,11 +2,12 @@
 <html lang="en" xml:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Customer Confrimation</title>
+    <title>Customer Confirmation</title>
 </head>
 <body>
-  <div>
+    <p>
     The customer is confirmed: <span th:text="${customer.firstName + ' ' + customer.lastName}"></span>
-  </div>
+    </p>
+    <p>Free passes: <span th:text="${customer.freePasses}"></span></p>
 </body>
 </html>
