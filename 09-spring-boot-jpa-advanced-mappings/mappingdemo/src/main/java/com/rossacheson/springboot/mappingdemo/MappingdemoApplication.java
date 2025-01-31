@@ -33,8 +33,15 @@ public class MappingdemoApplication {
 			// findInstructorWithCoursesJoinFetch(appDAO);
 			// updateInstructor(appDAO);
 			// updateCourse(appDAO);
-			deleteInstructor(appDAO);
+			// deleteInstructor(appDAO);
+			deleteCourse(appDAO);
 		};
+	}
+
+	private void deleteCourse(AppDAO appDAO) {
+		int courseId = 10;
+		System.out.println("Deleting course id: " + courseId);
+		appDAO.deleteCourseById(courseId);
 	}
 
 	private void updateCourse(AppDAO appDAO) {
