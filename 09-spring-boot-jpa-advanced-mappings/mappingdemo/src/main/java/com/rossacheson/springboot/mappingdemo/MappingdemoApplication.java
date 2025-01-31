@@ -18,8 +18,15 @@ public class MappingdemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			createInstructor(appDAO);
+			// createInstructor(appDAO);
+			findInstructor(appDAO);
 		};
+	}
+
+	private void findInstructor(AppDAO appDAO) {
+		int instructorId = 2;
+		Instructor instructor = appDAO.findInstructorById(instructorId);
+		System.out.println("Found instructor: " + instructor);
 	}
 
 	private void createInstructor(AppDAO appDAO) {
@@ -29,6 +36,5 @@ public class MappingdemoApplication {
 		instructor.setInstructorDetail(instructorDetail);
 		System.out.println("Saving instructor: " + instructor);
 		appDAO.save(instructor);
-		System.out.println("Done");
 	}
 }
