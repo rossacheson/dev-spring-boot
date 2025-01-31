@@ -22,7 +22,7 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
     @OneToMany(mappedBy = "instructor",
-            fetch = FetchType.EAGER, // temporary
+            fetch = FetchType.LAZY, // default
             cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,

@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class MappingdemoApplication {
 
@@ -25,11 +27,30 @@ public class MappingdemoApplication {
 			// findInstructorDetail(appDAO);
 			// deleteInstructorDetail(appDAO);
 			// createInstructorWithCourses(appDAO);
-			findInstructorWithCourses(appDAO);
+			// findInstructorWithCoursesEager(appDAO);
+			// findCoursesForInstructor(appDAO);
+			findInstructorWithCoursesLazy(appDAO);
 		};
 	}
 
-	private void findInstructorWithCourses(AppDAO appDAO) {
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int instructorId = 1;
+		List<Course> courses = appDAO.findCoursesByInstructorId(instructorId);
+		System.out.println("Courses: " + courses);
+	}
+
+	private void findInstructorWithCoursesLazy(AppDAO appDAO) {
+		int instructorId = 1;
+		System.out.println("Finding instructor with ID: " + instructorId);
+		Instructor instructor = appDAO.findInstructorById(instructorId);
+		System.out.println("Found instructor: " + instructor);
+
+		List<Course> courses = appDAO.findCoursesByInstructorId(instructorId);
+		instructor.setCourses(courses);
+		System.out.println("With courses: " + instructor.getCourses());
+	}
+
+	private void findInstructorWithCoursesEager(AppDAO appDAO) {
 		int instructorId = 1;
 		System.out.println("Finding instructor with ID: " + instructorId);
 		Instructor instructor = appDAO.findInstructorById(instructorId);
