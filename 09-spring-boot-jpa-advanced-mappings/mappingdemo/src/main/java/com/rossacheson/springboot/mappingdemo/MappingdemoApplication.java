@@ -21,8 +21,15 @@ public class MappingdemoApplication {
 			// createInstructor(appDAO);
 			// findInstructor(appDAO);
 			// deleteInstructor(appDAO);
-			findInstructorDetail(appDAO);
+			// findInstructorDetail(appDAO);
+			deleteInstructorDetail(appDAO);
 		};
+	}
+
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		int instructorDetailId = 2;
+		System.out.println("Deleting instructor detail with id " + instructorDetailId);
+		appDAO.deleteInstructorDetailById(instructorDetailId);
 	}
 
 	private void findInstructorDetail(AppDAO appDAO) {
