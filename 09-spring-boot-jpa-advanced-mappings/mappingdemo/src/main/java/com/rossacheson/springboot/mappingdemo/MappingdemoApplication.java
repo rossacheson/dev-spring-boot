@@ -32,7 +32,8 @@ public class MappingdemoApplication {
 			// findInstructorWithCoursesLazy(appDAO);
 			// findInstructorWithCoursesJoinFetch(appDAO);
 			// updateInstructor(appDAO);
-			updateCourse(appDAO);
+			// updateCourse(appDAO);
+			deleteInstructor(appDAO);
 		};
 	}
 
