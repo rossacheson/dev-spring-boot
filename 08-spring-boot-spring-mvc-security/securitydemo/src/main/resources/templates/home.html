@@ -11,9 +11,9 @@
     <hr>
     <p>User: <span sec:authentication="principal.username"></span></p>
     <p>Role(s): <span sec:authentication="principal.authorities"></span></p>
-    <hr>
-    <p><a th:href="@{/leaders}">Leadership Meeting</a> (Only for managers)</p>
-    <p><a th:href="@{/systems}">IT Systems Meeting</a> (Only for admins)</p>
+    <hr sec:authorize="hasAnyRole('MANAGER', 'ADMIN')">
+    <p sec:authorize="hasRole('MANAGER')"><a th:href="@{/leaders}">Leadership Meeting</a> (Only for managers)</p>
+    <p sec:authorize="hasRole('ADMIN')"><a th:href="@{/systems}">IT Systems Meeting</a> (Only for admins)</p>
     <hr>
     <form action="#" th:action="@{/logout}" method="post">
         <input type="submit" value="Logout"/>
