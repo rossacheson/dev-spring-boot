@@ -1,6 +1,7 @@
 package com.rossacheson.springboot.mappingdemo;
 
 import com.rossacheson.springboot.mappingdemo.dao.AppDAO;
+import com.rossacheson.springboot.mappingdemo.entity.Course;
 import com.rossacheson.springboot.mappingdemo.entity.Instructor;
 import com.rossacheson.springboot.mappingdemo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -22,8 +23,27 @@ public class MappingdemoApplication {
 			// findInstructor(appDAO);
 			// deleteInstructor(appDAO);
 			// findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+			// deleteInstructorDetail(appDAO);
+			createInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+		Instructor instructor = new Instructor("Susan", "Public", "susan@test.com");
+		InstructorDetail instructorDetail =
+				new InstructorDetail("SueChannel", "Gamer");
+		instructor.setInstructorDetail(instructorDetail);
+
+		Course course1 = new Course("Air Guitar - The Ultimate Guide");
+		Course course2 = new Course("The Pinball Masterclass");
+
+		instructor.addCourse(course1);
+		instructor.addCourse(course2);
+
+		System.out.println("Saving instructor: " + instructor);
+		System.out.println("With courses: " + instructor.getCourses());
+
+		appDAO.save(instructor);
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
