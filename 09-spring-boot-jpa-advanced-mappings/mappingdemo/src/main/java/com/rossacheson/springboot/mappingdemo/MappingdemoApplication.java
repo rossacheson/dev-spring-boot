@@ -31,8 +31,16 @@ public class MappingdemoApplication {
 			// findCoursesForInstructor(appDAO);
 			// findInstructorWithCoursesLazy(appDAO);
 			// findInstructorWithCoursesJoinFetch(appDAO);
-			updateInstructor(appDAO);
+			// updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int courseId = 10;
+		Course course = appDAO.findCourseById(courseId);
+		course.setTitle("Air Guitar - The Ultimate Guide");
+		appDAO.updateCourse(course);
 	}
 
 	private void updateInstructor(AppDAO appDAO) {
