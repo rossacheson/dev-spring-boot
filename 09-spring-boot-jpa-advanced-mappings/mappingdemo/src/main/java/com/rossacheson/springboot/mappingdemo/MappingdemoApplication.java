@@ -4,6 +4,7 @@ import com.rossacheson.springboot.mappingdemo.dao.AppDAO;
 import com.rossacheson.springboot.mappingdemo.entity.Course;
 import com.rossacheson.springboot.mappingdemo.entity.Instructor;
 import com.rossacheson.springboot.mappingdemo.entity.InstructorDetail;
+import com.rossacheson.springboot.mappingdemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,21 +22,27 @@ public class MappingdemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			// createInstructor(appDAO);
-			// findInstructor(appDAO);
-			// deleteInstructor(appDAO);
-			// findInstructorDetail(appDAO);
-			// deleteInstructorDetail(appDAO);
-			// createInstructorWithCourses(appDAO);
-			// findInstructorWithCoursesEager(appDAO);
-			// findCoursesForInstructor(appDAO);
-			// findInstructorWithCoursesLazy(appDAO);
-			// findInstructorWithCoursesJoinFetch(appDAO);
-			// updateInstructor(appDAO);
-			// updateCourse(appDAO);
-			// deleteInstructor(appDAO);
-			deleteCourse(appDAO);
+			// createCourseAndReviews(appDAO);
+			retrieveCourseAndReviews(appDAO);
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		int courseId = 10;
+		Course course = appDAO.findCourseAndReviewsById(courseId);
+		System.out.println(course);
+		System.out.println(course.getReviews());
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course course = new Course("Pacman - How to Score One Million Points");
+		course.addReview(new Review("Great course!"));
+		course.addReview(new Review("Teacher is great"));
+		course.addReview(new Review("Well done."));
+		course.addReview(new Review("Too easy"));
+		System.out.println("Saving the course " + course);
+		System.out.println("Wth reviews " + course.getReviews());
+		appDAO.saveCourse(course);
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
