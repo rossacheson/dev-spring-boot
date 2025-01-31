@@ -30,8 +30,17 @@ public class MappingdemoApplication {
 			// findInstructorWithCoursesEager(appDAO);
 			// findCoursesForInstructor(appDAO);
 			// findInstructorWithCoursesLazy(appDAO);
-			findInstructorWithCoursesJoinFetch(appDAO);
+			// findInstructorWithCoursesJoinFetch(appDAO);
+			updateInstructor(appDAO);
 		};
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+		int instructorId = 1;
+		Instructor instructor = appDAO.findInstructorById(instructorId);
+		System.out.println("Found instructor: " + instructor);
+		instructor.setLastName("Public");
+		appDAO.updateInstructor(instructor);
 	}
 
 	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
