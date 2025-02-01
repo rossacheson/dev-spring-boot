@@ -20,9 +20,26 @@ public class MappingdemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 			// createCourseAndStudents(appDAO);
-			findCourseAndStudents(appDAO);
-			findStudentAndCourses(appDAO);
+			// findCourseAndStudents(appDAO);
+			// findStudentAndCourses(appDAO);
+			addMoreCoursesForStudent(appDAO);
 		};
+	}
+
+	private void addMoreCoursesForStudent(AppDAO appDAO) {
+		int studentId = 2;
+		Student student = appDAO.findStudentAndCoursesByStudentId(studentId);
+
+		Course course1 = new Course("Rubik's Cube - How to Speed Cube");
+		Course course2 = new Course("Atari 2600 - Game Development");
+
+		student.addCourse(course1);
+		student.addCourse(course2);
+
+		System.out.println("Updating student: " + student);
+		System.out.println("Associated courses: " + student.getCourses());
+
+		appDAO.updateStudent(student);
 	}
 
 	private void findStudentAndCourses(AppDAO appDAO) {
