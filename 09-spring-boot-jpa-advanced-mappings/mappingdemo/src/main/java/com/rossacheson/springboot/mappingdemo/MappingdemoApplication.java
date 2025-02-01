@@ -21,7 +21,15 @@ public class MappingdemoApplication {
 		return runner -> {
 			// createCourseAndStudents(appDAO);
 			findCourseAndStudents(appDAO);
+			findStudentAndCourses(appDAO);
 		};
+	}
+
+	private void findStudentAndCourses(AppDAO appDAO) {
+		int studentId = 1;
+		Student student = appDAO.findStudentAndCoursesByStudentId(studentId);
+		System.out.println("Student: " + student);
+		System.out.println("Courses: " + student.getCourses());
 	}
 
 	private void findCourseAndStudents(AppDAO appDAO) {

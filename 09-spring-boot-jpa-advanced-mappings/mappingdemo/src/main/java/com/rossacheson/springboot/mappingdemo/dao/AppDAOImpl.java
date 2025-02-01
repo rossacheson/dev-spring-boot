@@ -3,6 +3,7 @@ package com.rossacheson.springboot.mappingdemo.dao;
 import com.rossacheson.springboot.mappingdemo.entity.Course;
 import com.rossacheson.springboot.mappingdemo.entity.Instructor;
 import com.rossacheson.springboot.mappingdemo.entity.InstructorDetail;
+import com.rossacheson.springboot.mappingdemo.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +115,16 @@ public class AppDAOImpl implements AppDAO {
         TypedQuery<Course> query = entityManager.createQuery(
                 "SELECT c from Course c JOIN FETCH c.students WHERE c.id = :data",
                 Course.class
+        );
+        query.setParameter("data", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int id) {
+        TypedQuery<Student> query = entityManager.createQuery(
+                "SELECT s from Student s JOIN FETCH s.courses WHERE s.id = :data",
+                Student.class
         );
         query.setParameter("data", id);
         return query.getSingleResult();
