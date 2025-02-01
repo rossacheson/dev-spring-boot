@@ -22,8 +22,16 @@ public class MappingdemoApplication {
 			// createCourseAndStudents(appDAO);
 			// findCourseAndStudents(appDAO);
 			// findStudentAndCourses(appDAO);
-			addMoreCoursesForStudent(appDAO);
+			// addMoreCoursesForStudent(appDAO);
+			// deleteCourse(appDAO);
+			deleteStudent(appDAO);
 		};
+	}
+
+	private void deleteStudent(AppDAO appDAO) {
+		int studentId = 1;
+		System.out.println("Deleting student " + studentId);
+		appDAO.deleteStudentById(studentId);
 	}
 
 	private void addMoreCoursesForStudent(AppDAO appDAO) {
