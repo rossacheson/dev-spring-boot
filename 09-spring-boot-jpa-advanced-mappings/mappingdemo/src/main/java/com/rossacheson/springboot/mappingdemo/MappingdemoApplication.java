@@ -1,10 +1,7 @@
 package com.rossacheson.springboot.mappingdemo;
 
 import com.rossacheson.springboot.mappingdemo.dao.AppDAO;
-import com.rossacheson.springboot.mappingdemo.entity.Course;
-import com.rossacheson.springboot.mappingdemo.entity.Instructor;
-import com.rossacheson.springboot.mappingdemo.entity.InstructorDetail;
-import com.rossacheson.springboot.mappingdemo.entity.Review;
+import com.rossacheson.springboot.mappingdemo.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,10 +19,23 @@ public class MappingdemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			// createCourseAndReviews(appDAO);
-			// retrieveCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+			createCourseAndStudents(appDAO);
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		Course course = new Course("Pacman - How To Score One Million Points");
+
+		Student student1 = new Student("John", "Doe", "john@test.com");
+		Student student2 = new Student("Mary", "Knowing", "mary@test.com");
+
+		course.addStudent(student1);
+		course.addStudent(student2);
+
+		System.out.println("Saving the course: " + course);
+		System.out.println("Associated students: " + course.getStudents());
+
+		appDAO.saveCourse(course);
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
