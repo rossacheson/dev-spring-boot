@@ -1,5 +1,6 @@
 package com.rossacheson.springboot.aopdemo;
 
+import com.rossacheson.springboot.aopdemo.dao.AccountDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +14,16 @@ public class AopdemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
 		return runner -> {
-			System.out.println("Hello World!");
+			demoTheBeforeAdvice(accountDAO);
+			System.out.println("\nCall it again :)");
+			demoTheBeforeAdvice(accountDAO);
 		};
+	}
+
+	private void demoTheBeforeAdvice(AccountDAO accountDAO) {
+		accountDAO.addAccount();
 	}
 
 }
