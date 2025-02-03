@@ -5,6 +5,7 @@ import com.rossacheson.springboot.aopdemo.dao.MembershipDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -23,7 +24,7 @@ public class AopdemoApplication {
 
 	private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 		Account account = new Account();
-		accountDAO.addAccount(account);
+		accountDAO.addAccount(account, true);
 		membershipDAO.addMember();
 	}
 
