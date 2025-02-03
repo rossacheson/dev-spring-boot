@@ -3,6 +3,7 @@ package com.rossacheson.springboot.aopdemo.aspect;
 import com.rossacheson.springboot.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -47,6 +48,16 @@ public class MyDemoLoggingAspect {
         // post-process the data
         convertAccountNameToUpperCase(result);
         System.out.println("====> Updated result is: " + result);
+    }
+
+    @AfterThrowing(
+            pointcut = "execution(* com.rossacheson.springboot.aopdemo.dao.AccountDAO.findAccounts(..))",
+            throwing = "e"
+    )
+    public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint, Throwable e) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n====> Executing @AfterThrowing on method: " + method);
+        System.out.println("====> Exception is: " + e);
     }
 
     private void convertAccountNameToUpperCase(List<Account> result) {
