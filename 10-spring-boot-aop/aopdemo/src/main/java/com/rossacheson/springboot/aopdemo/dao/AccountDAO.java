@@ -1,5 +1,7 @@
 package com.rossacheson.springboot.aopdemo.dao;
 
+import com.rossacheson.springboot.aopdemo.Account;
+
 public interface AccountDAO {
-    void addAccount();
+    void addAccount(Account account);
 }
