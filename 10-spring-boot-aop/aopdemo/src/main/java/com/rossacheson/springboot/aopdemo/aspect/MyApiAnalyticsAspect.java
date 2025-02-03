@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(2)
-public class MyDemoLoggingAspect {
-    // this is where we add all of our related advices for logging
+@Order(3)
+public class MyApiAnalyticsAspect {
+    // this is where we add all of our related advices for analytics
     @Before("com.rossacheson.springboot.aopdemo.aspect.AopPointcutDeclarations.forDaoPackageNoGetterSetter()")
-    public void beforeMethodAdvice() {
-        System.out.println("=========> Executing @Before advice on dao method");
+    public void performApiAnalytics() {
+        System.out.println("=========> Performing fancy API analytics on dao method");
     }
 }

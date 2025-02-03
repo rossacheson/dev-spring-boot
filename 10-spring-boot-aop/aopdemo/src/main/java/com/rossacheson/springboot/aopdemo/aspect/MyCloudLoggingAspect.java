@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(2)
-public class MyDemoLoggingAspect {
-    // this is where we add all of our related advices for logging
+@Order(1)
+public class MyCloudLoggingAspect {
+    // this is where we add all of our related advices for cloud logging
     @Before("com.rossacheson.springboot.aopdemo.aspect.AopPointcutDeclarations.forDaoPackageNoGetterSetter()")
-    public void beforeMethodAdvice() {
-        System.out.println("=========> Executing @Before advice on dao method");
+    public void logToCloudAsync() {
+        System.out.println("=========> Logging to Cloud in async fashion");
     }
 }
