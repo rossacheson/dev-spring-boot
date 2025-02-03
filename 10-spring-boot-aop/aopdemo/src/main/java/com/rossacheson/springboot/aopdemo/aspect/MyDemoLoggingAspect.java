@@ -2,6 +2,7 @@ package com.rossacheson.springboot.aopdemo.aspect;
 
 import com.rossacheson.springboot.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -61,6 +62,23 @@ public class MyDemoLoggingAspect {
     public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint) {
         String method = joinPoint.getSignature().toShortString();
         System.out.println("\n====> Executing @After (finally) on method: " + method);
+    }
+
+    @Around("execution(* com.rossacheson.springboot.aopdemo.service.*.getFortune(..))")
+    public Object aroundGetFortune( ProceedingJoinPoint proceedingJoinPoint ) throws Throwable {
+        String method = proceedingJoinPoint.getSignature().toShortString();
+        System.out.println("\n====> Executing @Around on method: " + method);
+
+        long begin = System.currentTimeMillis();
+
+        Object result = proceedingJoinPoint.proceed();
+
+        long end = System.currentTimeMillis();
+
+        System.out.println("Result is: " + result);
+        System.out.println("Elapsed time: " + (end - begin)/1000.0 + " seconds\n");
+
+        return result;
     }
 
     private void convertAccountNameToUpperCase(List<Account> result) {
