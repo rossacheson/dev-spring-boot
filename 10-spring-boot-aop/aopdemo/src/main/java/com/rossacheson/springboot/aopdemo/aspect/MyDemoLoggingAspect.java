@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class MyDemoLoggingAspect {
     // this is where we add all of our related advices for logging
 
-    @Before("execution(public * com.rossacheson.springboot.aopdemo..add*(..))")
+    @Before("execution(public * com.rossacheson.springboot.aopdemo.dao.*.*(..))")
     public void beforeAddAccountAdvice() {
-        System.out.println("\n=========> Executing @Before advice on addAccount()");
+        System.out.println("\n=========> Executing @Before advice on dao methods");
     }
 }
