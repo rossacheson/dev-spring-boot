@@ -12,13 +12,19 @@ public class MyDemoLoggingAspect {
 
     @Pointcut("execution(public * com.rossacheson.springboot.aopdemo.dao.*.*(..))")
     private void forDaoPackage() {}
+    @Pointcut("execution(public * com.rossacheson.springboot.aopdemo.dao.*.get*(..))")
+    private void daoGetter() {}
+    @Pointcut("execution(public * com.rossacheson.springboot.aopdemo.dao.*.set*(..))")
+    private void doaSetter() {}
+    @Pointcut("forDaoPackage() && !(daoGetter() || doaSetter())")
+    private void forDaoPackageNoGetterSetter() {}
 
-    @Before("forDaoPackage()")
+    @Before("forDaoPackageNoGetterSetter()")
     public void beforeMethodAdvice() {
-        System.out.println("=========> Executing @Before advice on dao method");
+        System.out.println("\n=========> Executing @Before advice on dao method");
     }
 
-    @Before("forDaoPackage()")
+    @Before("forDaoPackageNoGetterSetter()")
     public void performApiAnalytics() {
         System.out.println("=========> Performing fancy API analytics on dao method");
     }
